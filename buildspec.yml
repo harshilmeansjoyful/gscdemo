@@ -63,7 +63,7 @@ phases:
       - echo "→ prepare output directory"
       - mkdir -p output
       - echo "→ copy built files into output/"
-      - cp -r $UI_DIR/dist/* output/
+      - cp -r $UI_DIR/dist/public/* output/
       - echo "→ copy hook scripts (if any) into output/"
       - cp scripts/install_dependencies.sh output/       || true
       - cp scripts/another_hook.sh      output/       || true
