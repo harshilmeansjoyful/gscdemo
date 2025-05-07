@@ -63,7 +63,7 @@ phases:
       - echo "→ prepare output directory"
       - mkdir -p output
       - echo "→ copy dist → output"
-      - cp -r /tmp/codebuild/output/src2380831759/src/github.com/harshilmeansjoyful/gscdemo/dist* output/
+      - cp -r /tmp/codebuild/output/src2380831759/src/github.com/harshilmeansjoyful/gscdemo/dist* /tmp/codebuild/output
       - echo "→ include hook scripts"
       - cp scripts/install_dependencies.sh output/ || true
       - cp scripts/another_hook.sh      output/ || true
