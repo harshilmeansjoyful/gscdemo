@@ -1,81 +1,39 @@
-# # version: 0.2
-
-# # phases:
-# #   install:
-# #     runtime-versions:
-# #       nodejs: 20
-# #     commands:
-# #       - echo "→ cd into gms-ui"
-# #       - cd gsc-frontend/gms-ui
-# #       - echo "→ install deps"
-# #       - npm install
-# #       - echo "→ build (creates dist/ or build/)"
-# #       - npm run build
-# #       - echo "→ back to repo root"
-# #       - cd ../..
-
-# #   build:
-# #     commands:
-# #       - echo "→ prepare output"
-# #       - mkdir -p gsc-frontend/output
-# #       - echo "→ copy everything from gms-ui → output"
-# #       - cp -r gsc-frontend/gms-ui/* gsc-frontend/output/
-# #       - echo "→ copy hook scripts into output/"
-# #       - cp install_dependencies.sh gsc-frontend/output/       || true
-# #       - cp another_hook.sh      gsc-frontend/output/       || true
-
-# #   post_build:
-# #     commands:
-# #       - echo "→ final contents of output/:"
-# #       - ls -R gsc-frontend/output
-
-# # artifacts:
-# #   base-directory: gsc-frontend/output
-# #   files:
-# #     - '**/*'
-# #   discard-paths: no
-
 # version: 0.2
-
-# env:
-#   variables:
-#     UI_DIR: "client"
 
 # phases:
 #   install:
 #     runtime-versions:
 #       nodejs: 20
 #     commands:
-#       - echo "→ cd into $UI_DIR"
-#       - cd $UI_DIR
-#       - echo "→ install dependencies"
+#       - echo "→ cd into gms-ui"
+#       - cd gsc-frontend/gms-ui
+#       - echo "→ install deps"
 #       - npm install
+#       - echo "→ build (creates dist/ or build/)"
+#       - npm run build
+#       - echo "→ back to repo root"
+#       - cd ../..
 
 #   build:
 #     commands:
-#       - echo "→ build (output will go to dist/)"
-#       - npm run build
+#       - echo "→ prepare output"
+#       - mkdir -p gsc-frontend/output
+#       - echo "→ copy everything from gms-ui → output"
+#       - cp -r gsc-frontend/gms-ui/* gsc-frontend/output/
+#       - echo "→ copy hook scripts into output/"
+#       - cp install_dependencies.sh gsc-frontend/output/       || true
+#       - cp another_hook.sh      gsc-frontend/output/       || true
 
 #   post_build:
 #     commands:
-#       - echo "→ back to repo root"
-#       - cd ..
-#       - echo "→ prepare output directory"
-#       - mkdir -p output
-#       - echo "→ copy entire dist into output/"
-#       - cp -r $UI_DIR/dist/* output/
-#       - echo "→ copy hook scripts (if any)"
-#       - cp scripts/install_dependencies.sh output/     || true
-#       - cp scripts/another_hook.sh      output/     || true
 #       - echo "→ final contents of output/:"
-#       - ls -R output
+#       - ls -R gsc-frontend/output
 
 # artifacts:
-#   base-directory: output
+#   base-directory: gsc-frontend/output
 #   files:
 #     - '**/*'
 #   discard-paths: no
-
 
 version: 0.2
 
@@ -95,6 +53,8 @@ phases:
 
   build:
     commands:
+      - echo "→ cd into $UI_DIR (again!)"
+      - cd $UI_DIR
       - echo "→ build (output will go to dist/)"
       - npm run build
 
@@ -102,11 +62,9 @@ phases:
     commands:
       - echo "→ back to repo root"
       - cd ..
-      - echo "→ dist directory structure:"
-      - ls -R $UI_DIR/dist        # <— debug
       - echo "→ prepare output directory"
       - mkdir -p output
-      - echo "→ copy everything from dist → output"
+      - echo "→ copy entire dist into output/"
       - cp -r $UI_DIR/dist/* output/
       - echo "→ copy hook scripts (if any)"
       - cp scripts/install_dependencies.sh output/     || true
