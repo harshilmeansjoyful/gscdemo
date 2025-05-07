@@ -6,7 +6,7 @@ phases:
       nodejs: 20
     commands:
       - echo "→ cd into gms-ui"
-      - cd gsc-frontend/gms-ui
+      - cd gms-ui
       - echo "→ install deps"
       - npm install
       - echo "→ build (creates dist/ or build/)"
@@ -17,20 +17,20 @@ phases:
   build:
     commands:
       - echo "→ prepare output"
-      - mkdir -p gsc-frontend/output
+      - mkdir -p output
       - echo "→ copy everything from gms-ui → output"
-      - cp -r gsc-frontend/gms-ui/* gsc-frontend/output/
+      - cp -r gms-ui/* output/
       - echo "→ copy hook scripts into output/"
-      - cp install_dependencies.sh gsc-frontend/output/       || true
-      - cp another_hook.sh      gsc-frontend/output/       || true
+      - cp install_dependencies.sh output/       || true
+      - cp another_hook.sh      output/       || true
 
   post_build:
     commands:
       - echo "→ final contents of output/:"
-      - ls -R gsc-frontend/output
+      - ls -R output
 
 artifacts:
-  base-directory: gsc-frontend/output
+  base-directory: output
   files:
     - '**/*'
   discard-paths: no
