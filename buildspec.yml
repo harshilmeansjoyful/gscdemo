@@ -62,11 +62,11 @@ phases:
       - cd ..
       - echo "→ prepare output directory"
       - mkdir -p output
-      - echo "→ copy built files into output/"
-      - cp -r $UI_DIR/dist/public/* output/
-      - echo "→ copy hook scripts (if any) into output/"
-      - cp scripts/install_dependencies.sh output/       || true
-      - cp scripts/another_hook.sh      output/       || true
+      - echo "→ copy entire dist into output/"
+      - cp -r $UI_DIR/dist/* output/
+      - echo "→ copy hook scripts (if any)"
+      - cp scripts/install_dependencies.sh output/     || true
+      - cp scripts/another_hook.sh      output/     || true
       - echo "→ final contents of output/:"
       - ls -R output
 
