@@ -1,0 +1,36 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 20
+    commands:
+      - echo "→ cd into gms-ui"
+      - cd gsc-frontend/gms-ui
+      - echo "→ install deps"
+      - npm install
+      - echo "→ build (creates dist/ or build/)"
+      - npm run build
+      - echo "→ back to repo root"
+      - cd ../..
+
+  build:
+    commands:
+      - echo "→ prepare output"
+      - mkdir -p gsc-frontend/output
+      - echo "→ copy everything from gms-ui → output"
+      - cp -r gsc-frontend/gms-ui/* gsc-frontend/output/
+      - echo "→ copy hook scripts into output/"
+      - cp install_dependencies.sh gsc-frontend/output/       || true
+      - cp another_hook.sh      gsc-frontend/output/       || true
+
+  post_build:
+    commands:
+      - echo "→ final contents of output/:"
+      - ls -R gsc-frontend/output
+
+artifacts:
+  base-directory: gsc-frontend/output
+  files:
+    - '**/*'
+  discard-paths: no
